@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vinay Reddy — Backend Engineer & Building Scalable Systems. Portfolio showcasing scalable microservices, cloud-native systems, and backend expertise." />
+    <meta name="author" content="Vinay Reddy" />
+    <meta name="keywords" content="Backend Engineer, Building Scalable Systems, Java, Spring Boot, Microservices, GCP, Cloud, Kafka, Portfolio" />
+    <meta name="theme-color" content="#02040a" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vinay Reddy — Backend Engineer & Building Scalable Systems" />
+    <meta property="og:description" content="Portfolio showcasing scalable microservices, cloud-native systems, and backend expertise." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vinay Reddy — Backend Engineer & Building Scalable Systems" />
+    <meta name="twitter:description" content="Portfolio showcasing scalable microservices, cloud-native systems, and backend expertise." />
+
+    <title>Vinay Reddy — Backend Engineer &amp; Building Scalable Systems</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Tailwind CSS CDN (unified plugins) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+
+    <!-- Unified Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#fbbf24",
+                        secondary: "#22d3ee",
+                        neon: "#4ade80",
+                        electric: "#3b82f6",
+                        "accent-teal": "#14B8A6",
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#02040a",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#0d1117",
+                        "border-dark": "#30363d",
+                        "tech-gray": "#8b949e",
+                        "terminal-black": "#010101",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"],
+                    },
+                    boxShadow: {
+                        'clay-light': '8px 8px 16px #d1d5db, -8px -8px 16px #ffffff, inset 2px 2px 4px rgba(255,255,255,0.5)',
+                        'clay-dark': '8px 8px 16px #0a0a0a, -8px -8px 16px #1a1a1a, inset 1px 1px 2px rgba(255,255,255,0.05)',
+                        'glow': '0 0 20px rgba(34, 211, 238, 0.3)',
+                        'glow-primary': '0 0 25px rgba(251, 191, 36, 0.3)',
+                        'glow-neon': '0 0 20px rgba(74, 222, 128, 0.2)',
+                        'inner-dark': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.8)',
+                        'cert-preview': '0 10px 40px -10px rgba(0,0,0,0.5)',
+                    }
+                },
+            },
+        };
+    </script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Material Icons (single unified set) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 font-display transition-colors duration-300 antialiased min-h-screen">
+
+    <!-- ═══════════════════════════════════════════════════════════
+         NAVBAR — Fixed Navigation
+    ═══════════════════════════════════════════════════════════ -->
+    <nav aria-label="Main navigation" class="fixed top-0 w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center">
+                    <span class="text-xl font-bold font-mono tracking-tighter">
+                        <span class="text-primary">&lt;</span>VR<span class="text-primary">/&gt;</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-mono text-sm">
+                        <a class="nav-link hover:text-primary transition-colors" href="#home">./home</a>
+                        <a class="nav-link hover:text-primary transition-colors" href="#experience">./experience</a>
+                        <a class="nav-link hover:text-primary transition-colors" href="#skills">./skills</a>
+                        <a class="nav-link hover:text-primary transition-colors" href="#contact">./contact</a>
+                    </div>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle theme">
+                        <span class="material-symbols-outlined text-xl dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined text-xl hidden dark:block text-yellow-300">light_mode</span>
+                    </button>
+
+                    <!-- Resume CTA -->
+                    <a class="hidden sm:inline-flex bg-primary hover:bg-yellow-500 text-black font-semibold px-4 py-2 rounded-md text-sm transition-colors items-center gap-2" href="#">
+                        <span class="material-symbols-outlined text-lg">download</span>
+                        git clone resume
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="menu-btn" class="md:hidden p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Open menu">
+                        <span class="material-symbols-outlined text-2xl">menu</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] bg-background-dark/95 backdrop-blur-lg flex flex-col md:hidden">
+        <div class="flex items-center justify-between h-16 px-4 border-b border-gray-800">
+            <span class="text-xl font-bold font-mono tracking-tighter">
+                <span class="text-primary">&lt;</span>VR<span class="text-primary">/&gt;</span>
+            </span>
+            <button id="menu-close" class="p-2 rounded hover:bg-gray-800 transition-colors" aria-label="Close menu">
+                <span class="material-symbols-outlined text-2xl text-gray-700 dark:text-white">close</span>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center flex-grow space-y-8 font-mono text-lg">
+            <a class="text-gray-300 hover:text-primary transition-colors" href="#home">./home</a>
+            <a class="text-gray-300 hover:text-primary transition-colors" href="#experience">./experience</a>
+            <a class="text-gray-300 hover:text-primary transition-colors" href="#skills">./skills</a>
+            <a class="text-gray-300 hover:text-primary transition-colors" href="#contact">./contact</a>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════════════════════ -->
+    <div class="site-wrapper bg-background-light dark:bg-background-dark min-h-screen">
+    <main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 1: HOME — Hero / Profile Card
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="home" role="region" aria-label="Introduction" class="relative pt-32 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-electric/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full border border-primary/20">
+                    System Identity
+                </div>
+            </div>
+
+            <!-- Terminal Card -->
+            <div class="bg-card-light dark:bg-card-dark rounded-3xl shadow-clay-light dark:shadow-clay-dark border border-gray-200 dark:border-gray-800 transition-transform duration-500 hover:scale-[1.005]">
+                <!-- Terminal Title Bar -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-white/5 backdrop-blur-sm rounded-t-3xl">
+                    <div class="flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-400 border border-red-500/30"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500/30"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-400 border border-green-500/30"></div>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs font-mono text-gray-400 select-none">
+                        <span class="material-symbols-outlined text-sm">terminal</span>
+                        <span class="hidden sm:inline">vinay_reddy@profile:~</span>
+                        <span class="sm:hidden">profile:~</span>
+                    </div>
+                    <div class="w-12"></div>
+                </div>
+
+                <!-- Terminal Content -->
+                <div class="p-8 md:p-12">
+                    <div class="flex flex-col lg:flex-row gap-12 items-center">
+                        <!-- Left: Info -->
+                        <div class="lg:w-7/12 space-y-6">
+                            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-xs font-mono font-bold border border-green-500/20 mb-2">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                </span>
+                                <span>SYSTEM ONLINE</span>
+                            </div>
+                            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white tracking-tight font-display">
+                                Backend Engineer ;<br />
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-600">Building Scalable Systems</span>
+                            </h1>
+                            <div class="font-mono text-sm text-gray-500 dark:text-gray-400 border-l-2 border-primary pl-4 py-1 bg-gray-50 dark:bg-background-dark/50 rounded-r">
+                                <span class="text-primary mr-2">$</span> cat vinay_summary.txt
+                            </div>
+                            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-light">
+                                Associate Software Engineer with hands-on experience in building scalable
+                                microservices and backend systems. Proficient in optimizing system performance and
+                                reliability through robust architectural patterns and cloud-native technologies.
+                            </p>
+                        </div>
+
+                        <!-- Right: Stats -->
+                        <div class="lg:w-5/12 w-full grid grid-cols-1 gap-5">
+                            <!-- Stat: Years -->
+                            <div class="group relative">
+                                <div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-orange-600 rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-500"></div>
+                                <div class="relative flex items-center justify-between p-5 bg-background-light dark:bg-[#151515] rounded-xl border border-gray-200 dark:border-gray-800 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                                    <div>
+                                        <p class="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-1">Total Uptime</p>
+                                        <div class="flex items-baseline gap-1">
+                                            <span class="text-3xl font-bold text-gray-900 dark:text-white">2+</span>
+                                            <span class="text-sm text-gray-500 font-medium">Years</span>
+                                        </div>
+                                        <p class="text-xs text-gray-400 mt-1">Years of Experience</p>
+                                    </div>
+                                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-black shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] dark:shadow-[5px_5px_10px_#0b0b0b,-5px_-5px_10px_#252525] flex items-center justify-center transform transition-transform group-hover:scale-110 duration-300 border border-white/20 dark:border-black/20">
+                                        <span class="material-symbols-outlined text-primary text-2xl">hourglass_top</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 2: EXPERIENCE — Deployment History / Timeline
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="experience" role="region" aria-label="Professional Experience" class="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden section-reveal">
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16 relative">
+                <div class="inline-block px-3 py-1 mb-4 text-xs font-mono font-semibold tracking-wider text-accent-teal uppercase bg-accent-teal/10 rounded-full border border-accent-teal/20">
+                    System Logs
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight text-gray-900 dark:text-white">
+                    Deployment <span class="text-gray-400 dark:text-gray-600">History</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-600 dark:text-gray-400 text-lg">
+                    A changelog of my professional journey, versioned by role and responsibility.
+                </p>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 opacity-[0.03] dark:opacity-[0.05] pointer-events-none dot-pattern"></div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Timeline Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 timeline-line transform md:-translate-x-1/2 rounded-full opacity-30 dark:opacity-50 h-full"></div>
+
+                <!-- Entry 1: Associate Software Engineer (current) -->
+                <div class="relative mb-16 md:mb-24 group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 -mt-1 z-10">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-background-light dark:bg-background-dark border-2 border-accent-teal shadow-glow transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined text-accent-teal text-sm">verified</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-start justify-between w-full">
+                        <div class="md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 mb-4 md:mb-0 order-1">
+                            <span class="font-mono text-accent-teal text-sm font-bold bg-accent-teal/10 px-2 py-1 rounded inline-block mb-2">v2.0.0</span>
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wider uppercase">Mar 2025 - Present</h3>
+                            <div class="hidden md:block mt-2 text-xs font-mono text-gray-400 dark:text-gray-500">
+                                Branch: <span class="text-primary">feature/associate-engineer</span>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12 order-2 w-full">
+                            <div class="bg-card-light dark:bg-card-dark p-4 sm:p-6 rounded-2xl shadow-clay-light dark:shadow-clay-dark border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-1">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Associate Software Engineer</h3>
+                                        <p class="text-primary font-medium">Wissen Technology</p>
+                                    </div>
+                                    <div class="h-8 w-8 rounded bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-gray-500 text-lg">dns</span>
+                                    </div>
+                                </div>
+                                <div class="font-mono text-xs sm:text-sm bg-gray-50 dark:bg-[#0a0a0a] p-3 rounded-lg border border-gray-200 dark:border-gray-800 mb-4 text-gray-600 dark:text-gray-300 break-words">
+                                    <span class="text-green-500 mr-2">$</span> git commit -m "Building production-grade microservices &amp; scalable APIs"
+                                </div>
+                                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    <li class="flex items-start">
+                                        <span class="material-symbols-outlined text-accent-teal text-base mr-2 mt-0.5">check_circle</span>
+                                        <span>Building and owning production-grade microservices using Java, Spring Boot, Kafka, and SQL Server</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="material-symbols-outlined text-accent-teal text-base mr-2 mt-0.5">check_circle</span>
+                                        <span>Designing scalable APIs and data models with secure OAuth2-based service communication</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="material-symbols-outlined text-accent-teal text-base mr-2 mt-0.5">check_circle</span>
+                                        <span>Enabling zero-downtime releases through Jenkins CI/CD and automated testing</span>
+                                    </li>
+                                </ul>
+                                <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Java</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Spring Boot</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Kafka</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">OAuth2</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Python</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Autosys</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded">Quartz Scheduler</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Entry 2: Trainee Analyst -->
+                <div class="relative mb-16 md:mb-24 group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 -mt-1 z-10">
+                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-background-light dark:bg-background-dark border-2 border-blue-500 shadow-lg group-hover:shadow-blue-500/50 transition-all duration-300">
+                            <span class="material-symbols-outlined text-blue-500 text-sm">commit</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-start justify-between w-full">
+                        <div class="md:w-1/2 md:pr-12 pl-12 md:pl-0 order-2 md:order-1 w-full">
+                            <div class="bg-card-light dark:bg-card-dark p-4 sm:p-6 rounded-2xl shadow-clay-light dark:shadow-clay-dark border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:-translate-y-1">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">Trainee Analyst</h3>
+                                        <p class="text-primary font-medium">Wissen Technology</p>
+                                    </div>
+                                    <div class="h-8 w-8 rounded bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-gray-500 text-lg">code</span>
+                                    </div>
+                                </div>
+                                <div class="font-mono text-xs sm:text-sm bg-gray-50 dark:bg-[#0a0a0a] p-3 rounded-lg border border-gray-200 dark:border-gray-800 mb-4 text-gray-600 dark:text-gray-300 break-words">
+                                    <span class="text-blue-500 mr-2">$</span> git commit -m "Learning enterprise systems &amp; building microservices"
+                                </div>
+                                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                                    <li class="flex items-start">
+                                        <span class="material-symbols-outlined text-blue-500 text-base mr-2 mt-0.5">arrow_right</span>
+                                        <span>Developed small-scale microservices and database schemas while learning enterprise systems</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="material-symbols-outlined text-blue-500 text-base mr-2 mt-0.5">arrow_right</span>
+                                        <span>Gained strong understanding of microservices architecture, data flow, and integration patterns in banking platforms</span>
+                                    </li>
+                                </ul>
+                                <div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex flex-wrap gap-2">
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">Java</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">Spring Boot</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">SQL Server</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">Docker</span>
+                                    <span class="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">Kafka</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12 md:text-left mb-4 md:mb-0 order-1 md:order-2">
+                            <span class="font-mono text-blue-500 text-sm font-bold bg-blue-500/10 px-2 py-1 rounded inline-block mb-2">v1.0.0</span>
+                            <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 tracking-wider uppercase">Jan 2024 - Mar 2025</h3>
+                            <div class="hidden md:block mt-2 text-xs font-mono text-gray-400 dark:text-gray-500">
+                                Init: <span class="text-blue-400">First commit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Origin: Education -->
+                <div class="relative group">
+                    <div class="absolute left-4 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 -mt-1 z-10">
+                        <div class="flex items-center justify-center w-6 h-6 rounded-full bg-background-dark dark:bg-background-light border-2 border-gray-500 shadow-sm">
+                            <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="md:w-1/2 md:pr-12 md:text-right pl-12 md:pl-0 order-1">
+                            <div class="text-xs font-mono text-gray-400 dark:text-gray-600 uppercase tracking-widest">
+                                Repository Initialized
+                            </div>
+                            <h3 class="text-base font-bold text-gray-700 dark:text-gray-300 mt-1">B.Tech in Computer Science</h3>
+                            <span class="text-sm text-gray-500 dark:text-gray-500">2019 - 2023</span>
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 pl-12 order-2 hidden md:block">
+                            <div class="text-xs font-mono text-gray-400 dark:text-gray-600">
+                                origin/master
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 3: SKILLS — Tech Stack Grid
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="skills" role="region" aria-label="Technical Skills" class="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden section-reveal">
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-secondary/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/10 border border-secondary/20 text-secondary text-xs font-mono mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                    </span>
+                    SYSTEM_v2.0_DEPLOYED
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight mb-4 text-gray-900 dark:text-white">
+                    Tech <span class="text-primary">Stack</span> Grid
+                </h2>
+                <p class="text-tech-gray text-lg max-w-2xl leading-relaxed">
+                    A multi-layered architectural overview of the systems and technologies I leverage to build scalable,
+                    high-performance backend solutions.
+                </p>
+            </div>
+
+            <!-- Tech Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Layer 01: Languages -->
+                <div class="tech-card group">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-neon/10 border border-neon/20 flex items-center justify-center text-neon">
+                                <span class="material-symbols-outlined">code</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-neon tracking-widest uppercase">Layer 01</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Languages</h3>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-300 dark:text-border-dark group-hover:text-neon transition-colors">arrow_forward</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">coffee</span> Java</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">terminal</span> Python</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">database</span> SQL</div>
+                    </div>
+                </div>
+
+                <!-- Layer 02: Libraries & Frameworks -->
+                <div class="tech-card group">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary">
+                                <span class="material-symbols-outlined">library_books</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-secondary tracking-widest uppercase">Layer 02</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Libraries &amp; Frameworks</h3>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-300 dark:text-border-dark group-hover:text-secondary transition-colors">arrow_forward</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">bolt</span> Spring Boot</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">dashboard</span> MVC</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">table_rows</span> Data JPA</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">settings_ethernet</span> RESTful API</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">shield</span> Resilience4j</div>
+                    </div>
+                </div>
+
+                <!-- Layer 03: Data & Systems -->
+                <div class="tech-card group">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">storage</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-primary tracking-widest uppercase">Layer 03</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Data &amp; Systems</h3>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-300 dark:text-border-dark group-hover:text-primary transition-colors">arrow_forward</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">description</span> MongoDB</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">database</span> PostgreSQL</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">terminal</span> Linux</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">cycle</span> SDLC</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">data_object</span> Data Structures</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">apps</span> Microservices</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">cloud_queue</span> Spring Cloud</div>
+                    </div>
+                </div>
+
+                <!-- Layer 04: Developer Workflow -->
+                <div class="tech-card group">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-electric/10 border border-electric/20 flex items-center justify-center text-electric">
+                                <span class="material-symbols-outlined">construction</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-electric tracking-widest uppercase">Layer 04</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Developer Workflow</h3>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-300 dark:text-border-dark group-hover:text-electric transition-colors">arrow_forward</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">fork_right</span> Git</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">deployed_code</span> Docker</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">construction</span> Gradle</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">stream</span> Apache Kafka</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">precision_manufacturing</span> Jenkins</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">smart_toy</span> GitHub Copilot</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">send</span> Postman</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">bug_report</span> SonarQube</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">task_alt</span> Jira</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">sync_alt</span> gRPC</div>
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">cached</span> Redis Cache</div>
+                    </div>
+                </div>
+
+                <!-- Layer 05: Cloud Platform (full width) -->
+                <div class="tech-card group md:col-span-2">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 flex items-center justify-center text-gray-700 dark:text-white">
+                                <span class="material-symbols-outlined">cloud_circle</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-tech-gray tracking-widest uppercase">Layer 05</span>
+                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Cloud Platform</h3>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-gray-300 dark:text-border-dark group-hover:text-gray-900 dark:group-hover:text-white transition-colors">arrow_forward</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="tech-tag"><span class="material-symbols-outlined text-xs">cloud</span> Google Cloud Platform</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Status Bar -->
+            <div class="mt-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-[10px] font-mono text-tech-gray border-t border-gray-200 dark:border-border-dark pt-8">
+                <div class="flex flex-wrap gap-4 sm:gap-6">
+                    <div class="flex items-center gap-2">
+                        <span class="text-border-dark">MEM_USAGE:</span>
+                        <div class="w-24 h-1.5 bg-border-dark rounded-full overflow-hidden">
+                            <div class="bg-secondary h-full w-[42%]"></div>
+                        </div>
+                        <span>42%</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-border-dark">CPU_LOAD:</span>
+                        <div class="w-24 h-1.5 bg-border-dark rounded-full overflow-hidden">
+                            <div class="bg-neon h-full w-[12%]"></div>
+                        </div>
+                        <span>12%</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 bg-neon rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.6)]"></span>
+                    <span class="tracking-widest">SYSTEM_OPTIMAL_STABLE</span>
+                    <!-- <span class="text-border-dark ml-4">BY_VINAY_REDDY</span> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 4: CERTIFICATIONS — Credentials
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="certifications" role="region" aria-label="Certifications" class="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden section-reveal">
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-electric/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div class="relative z-10 w-full max-w-5xl mx-auto">
+            <!-- Section Header -->
+            <div class="flex flex-col mb-12">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-neon font-mono text-sm tracking-wider uppercase flex items-center gap-2">
+                        <span class="w-2 h-2 bg-neon rounded-full animate-pulse shadow-[0_0_8px_#4ade80]"></span>
+                        System Architecture
+                    </span>
+                    <span class="h-px bg-border-dark flex-grow"></span>
+                    <span class="text-gray-500 font-mono text-xs">v2.0.4</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-2 terminal-cursor">
+                    Certifications &amp; credentials
+                </h2>
+                <p class="text-gray-400 font-mono text-sm max-w-xl mt-2">
+                    <span class="text-primary">root@portfolio:~/certifications#</span> ls -la --verified
+                </p>
+            </div>
+
+            <!-- Credential Cards -->
+            <div class="grid grid-cols-1 gap-6">
+
+                <!-- Cert 1: GCP Associate Cloud Engineer -->
+                <div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-border-dark hover:border-gray-300 dark:hover:border-secondary/30 rounded-2xl overflow-hidden shadow-clay-light dark:shadow-2xl hover:shadow-clay-light dark:hover:shadow-glow transition-all duration-300 group">
+                    <div class="p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex gap-4 items-center">
+                                <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-[#010409] border border-gray-200 dark:border-border-dark flex items-center justify-center shrink-0 group-hover:border-secondary/50 transition-colors">
+                                    <span class="material-symbols-outlined text-gray-500 group-hover:text-secondary transition-colors text-2xl">cloud_done</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-secondary transition-colors flex items-center gap-3 flex-wrap">
+                                        Associate Cloud Engineer
+                                        <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-secondary/10 text-secondary border border-secondary/20 uppercase tracking-wide">GCP</span>
+                                    </h3>
+                                    <p class="text-gray-500 text-sm font-mono mt-0.5">Google Cloud Platform &bull; Verified via Credly</p>
+                                </div>
+                            </div>
+                            <button data-cert-toggle="cert-gcp" data-cert-name="GCP Associate Cloud Engineer" aria-expanded="false" aria-controls="cert-gcp" class="flex items-center gap-2 text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors mt-2 md:mt-0">
+                                <span class="toggle-label">View credential</span>
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+                            </button>
+                        </div>
+                        <!-- Expandable Content -->
+                        <div id="cert-gcp" class="credential-content mt-6 pl-0 md:pl-16">
+                            <div class="credly-embed-wrapper mb-4" data-badge-id="a63ab532-10ac-437a-90f9-32a6ebb47eab">
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="a63ab532-10ac-437a-90f9-32a6ebb47eab" data-share-badge-host="https://www.credly.com"></div>
+                            </div>
+                            <div class="flex items-center gap-6 text-[13px] font-mono text-gray-500 border-l-2 border-gray-300 dark:border-border-dark pl-4 ml-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base">fingerprint</span>
+                                    <span>Credly <span class="text-gray-600 dark:text-gray-300">Verified</span></span>
+                                </div>
+                                <a class="flex items-center gap-1.5 text-secondary hover:text-gray-900 dark:hover:text-white transition-colors group/link" href="https://www.credly.com/badges/a63ab532-10ac-437a-90f9-32a6ebb47eab/public_url" target="_blank" rel="noopener noreferrer">
+                                    Verify Authenticity
+                                    <span class="material-symbols-outlined text-sm group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform">north_east</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cert 2: Google Generative AI Leader -->
+                <div class="bg-card-light dark:bg-card-dark border border-gray-200 dark:border-border-dark hover:border-gray-300 dark:hover:border-primary/30 rounded-2xl overflow-hidden shadow-clay-light dark:shadow-2xl hover:shadow-clay-light dark:hover:shadow-glow-primary transition-all duration-300 group">
+                    <div class="p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div class="flex gap-4 items-center">
+                                <div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-[#010409] border border-gray-200 dark:border-border-dark flex items-center justify-center shrink-0 group-hover:border-primary/50 transition-colors">
+                                    <span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-2xl">smart_toy</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition-colors">
+                                        Google Generative AI Leader
+                                    </h3>
+                                    <p class="text-gray-500 text-sm font-mono mt-0.5">Google &bull; Verified via Credly</p>
+                                </div>
+                            </div>
+                            <button data-cert-toggle="cert-genai" data-cert-name="Google Generative AI Leader" aria-expanded="false" aria-controls="cert-genai" class="flex items-center gap-2 text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-white transition-colors mt-2 md:mt-0">
+                                <span class="toggle-label">View credential</span>
+                                <span class="material-symbols-outlined text-lg">expand_more</span>
+                            </button>
+                        </div>
+                        <div id="cert-genai" class="credential-content mt-6 pl-0 md:pl-16">
+                            <div class="credly-embed-wrapper mb-4" data-badge-id="4a331037-0f51-4692-88c3-4d48c6ad109f">
+                                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="4a331037-0f51-4692-88c3-4d48c6ad109f" data-share-badge-host="https://www.credly.com"></div>
+                            </div>
+                            <div class="flex items-center gap-6 text-[13px] font-mono text-gray-500 border-l-2 border-gray-300 dark:border-border-dark pl-4 ml-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base">fingerprint</span>
+                                    <span>Credly <span class="text-gray-600 dark:text-gray-300">Verified</span></span>
+                                </div>
+                                <a class="flex items-center gap-1.5 text-primary hover:text-gray-900 dark:hover:text-white transition-colors group/link" href="https://www.credly.com/badges/4a331037-0f51-4692-88c3-4d48c6ad109f/public_url" target="_blank" rel="noopener noreferrer">
+                                    Verify Authenticity
+                                    <span class="material-symbols-outlined text-sm group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform">north_east</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal Log Footer -->
+                <div id="cert-terminal-log" class="mt-8 border-t border-gray-200 dark:border-border-dark pt-6">
+                    <div id="cert-log-lines" class="font-mono text-xs text-gray-600 space-y-1">
+                        <!-- Logs are dynamically injected by certifications.js -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SECTION 5: CONTACT — Form + Social Links
+    ═══════════════════════════════════════════════════════════ -->
+    <section id="contact" role="region" aria-label="Contact" class="relative py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden section-reveal">
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-electric/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative z-10 w-full max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="flex flex-col items-center mb-16 text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-secondary/40 bg-secondary/5 text-secondary text-xs font-mono mb-6 shadow-glow">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_#22d3ee]"></span>
+                    CONNECTION PROTOCOL
+                </div>
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                    Let's Build <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-orange-400 to-amber-200 terminal-glow-amber">Together</span>
+                </h2>
+                <p class="text-gray-400 max-w-lg font-mono text-sm">
+                    <span class="text-neon">&gt;</span> Initiate a handshake protocol. Whether it's a new microservice
+                    architecture or a scaling challenge, I'm ready to deploy.
+                </p>
+            </div>
+
+            <!-- Contact Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                <!-- Left: Social Links -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                        <div class="h-full bg-card-light dark:bg-card-dark border border-gray-200 dark:border-border-dark rounded-2xl p-5 sm:p-8 shadow-clay-light dark:shadow-2xl relative overflow-hidden group">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-transparent opacity-80"></div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">terminal</span>
+                                Terminal Access
+                            </h3>
+                            <p class="text-sm text-neon mt-2 font-mono opacity-80">
+                                // Select a communication channel below
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- GitHub Link -->
+                            <a class="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#010409] hover:border-primary/60 hover:shadow-glow-primary transition-all duration-300 group/node" href="https://github.com/reddy0852" target="_blank" rel="noopener noreferrer">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover/node:bg-primary group-hover/node:text-black transition-colors">
+                                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                            <path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">GitHub</div>
+                                        <div class="text-xs text-neon font-mono">git remote -v</div>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-gray-500 group-hover/node:text-primary transition-colors">arrow_outward</span>
+                            </a>
+                            <!-- LinkedIn Link -->
+                            <a class="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#010409] hover:border-secondary/60 hover:shadow-glow transition-all duration-300 group/node" href="https://www.linkedin.com/in/vinay-reddy-9b97491a0" target="_blank" rel="noopener noreferrer">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover/node:bg-secondary group-hover/node:text-black transition-colors">
+                                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">LinkedIn</div>
+                                        <div class="text-xs text-secondary font-mono">/in/vinay-reddy</div>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-gray-500 group-hover/node:text-secondary transition-colors">arrow_outward</span>
+                            </a>
+                            <!-- Email Link -->
+                            <a class="flex items-center justify-between p-3 sm:p-4 rounded-xl border border-gray-200 dark:border-border-dark bg-gray-50 dark:bg-[#010409] hover:border-neon/60 hover:shadow-glow-neon transition-all duration-300 group/node" href="mailto:vinayreddi@gmail.com">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center group-hover/node:bg-neon group-hover/node:text-black transition-colors">
+                                        <span class="material-symbols-outlined text-lg">mail</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">Email</div>
+                                        <div class="text-xs text-neon font-mono">send_packet(msg)</div>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-gray-500 group-hover/node:text-neon transition-colors">arrow_outward</span>
+                            </a>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-border-dark flex justify-between items-center text-xs font-mono text-gray-500">
+                            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-neon rounded-full animate-pulse"></span> UPTIME: 99.9%</span>
+                            <span>PING: 24ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" class="h-full bg-card-light dark:bg-card-dark border border-gray-200 dark:border-border-dark rounded-2xl p-5 sm:p-8 shadow-clay-light dark:shadow-2xl flex flex-col justify-between">
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider font-mono ml-1" for="name">
+                                        Identifier / Name
+                                    </label>
+                                    <div class="relative group">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span class="material-symbols-outlined text-gray-500 group-focus-within:text-neon transition-colors text-lg">person</span>
+                                        </div>
+                                        <input class="block w-full pl-10 pr-3 py-3 rounded-lg bg-gray-50 dark:bg-[#010409] border border-gray-200 dark:border-border-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 shadow-sm dark:shadow-inner-dark focus:ring-2 focus:ring-neon focus:border-transparent transition-all font-mono text-sm" id="name" name="name" placeholder="John Doe" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider font-mono ml-1" for="email">
+                                        Return Address
+                                    </label>
+                                    <div class="relative group">
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span class="material-symbols-outlined text-gray-500 group-focus-within:text-neon transition-colors text-lg">alternate_email</span>
+                                        </div>
+                                        <input class="block w-full pl-10 pr-3 py-3 rounded-lg bg-gray-50 dark:bg-[#010409] border border-gray-200 dark:border-border-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 shadow-sm dark:shadow-inner-dark focus:ring-2 focus:ring-neon focus:border-transparent transition-all font-mono text-sm" id="email" name="email" placeholder="dev@example.com" type="email" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider font-mono ml-1" for="subject">
+                                    Subject
+                                </label>
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <span class="material-symbols-outlined text-gray-500 group-focus-within:text-neon transition-colors text-lg">subject</span>
+                                    </div>
+                                    <input class="block w-full pl-10 pr-3 py-3 rounded-lg bg-gray-50 dark:bg-[#010409] border border-gray-200 dark:border-border-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 shadow-sm dark:shadow-inner-dark focus:ring-2 focus:ring-neon focus:border-transparent transition-all font-mono text-sm" id="subject" name="subject" placeholder="What's this about?" type="text" required />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider font-mono ml-1" for="message">
+                                    Payload / Message
+                                </label>
+                                <div class="relative group">
+                                    <textarea class="block w-full p-3 rounded-lg bg-gray-50 dark:bg-[#010409] border border-gray-200 dark:border-border-dark text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 shadow-sm dark:shadow-inner-dark focus:ring-2 focus:ring-neon focus:border-transparent transition-all font-mono text-sm resize-none" id="message" name="message" placeholder="Describe the system requirements..." rows="4" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-gray-200 dark:border-border-dark flex items-center justify-between">
+                            <span class="text-xs text-gray-500 font-mono hidden sm:inline-block">
+                                <span class="text-neon">*</span> Fields required for compilation
+                            </span>
+                            <button class="w-full sm:w-auto bg-primary hover:bg-amber-500 text-black font-bold py-3 px-8 rounded-lg shadow-glow-primary transition-all duration-300 flex items-center justify-center gap-2 transform active:scale-95" type="submit">
+                                <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                                Initialize Connection
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════════════════════ -->
+    <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#080808] py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div class="text-sm text-gray-500 dark:text-gray-400 font-mono">
+                &copy; 2026 Vinay Reddy. <span class="text-neon opacity-70">All systems operational.</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-neon/10 border border-neon/30">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-neon"></span>
+                    </span>
+                    <span class="text-xs font-bold text-neon font-mono tracking-wider terminal-glow-green">SYSTEM STABLE</span>
+                </div>
+            </div>
+            <div class="flex space-x-6">
+                <!-- Scroll to Top -->
+                <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Scroll to top" class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-primary/20 hover:border-primary/40 transition-all group cursor-pointer">
+                    <span class="material-symbols-outlined text-gray-500 group-hover:text-primary transition-colors text-xl">keyboard_arrow_up</span>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         SCRIPTS
+    ═══════════════════════════════════════════════════════════ -->
+    </div><!-- /.site-wrapper -->
+
+    <script src="js/app.js"></script>
+    <script src="js/certifications.js"></script>
+    <script src="js/contact.js"></script>
+
+</body>
+
+</html>
