@@ -1,0 +1,174 @@
+.hero {
+  --name-size: min(27rem, calc((100vw - 2 * var(--gutter)) / 2.3));
+  --step: 26px;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding: 112px var(--gutter) 40px;
+  overflow: hidden;
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+}
+
+.name {
+  position: relative;
+  z-index: 1;
+  margin: 40px 0 0 -0.03em;
+  font-family: var(--font-display);
+  font-size: var(--name-size);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.name span {
+  display: block;
+}
+
+/* Panes overlap the bottom of the name so it blurs through the glass. */
+.stackWrap {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--name-size) * -0.12);
+}
+
+/* A small glass label so it stays legible whether it sits on frost or on the disc. */
+.caption {
+  composes: glass from '../base.module.css';
+  display: inline-block;
+  margin: 0 0 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: none;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.stack {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pane {
+  composes: glass from '../base.module.css';
+  padding: 16px 20px;
+  translate: calc(var(--i) * 9px) 0;
+  width: calc(100% - 4 * 9px);
+  animation: assemble 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(0.15s + var(--i) * 90ms);
+}
+
+.paneTitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.paneItems {
+  margin: 4px 0 0;
+  color: var(--slate);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.discCobalt {
+  width: 118vw;
+  aspect-ratio: 1;
+  right: -60vw;
+  top: calc(112px + var(--name-size) * 1.6);
+}
+
+.discSignal {
+  width: 120px;
+  aspect-ratio: 1;
+  left: -30px;
+  bottom: 24px;
+}
+
+/* The one orchestrated motion on the page: the stack assembles on load. */
+@keyframes assemble {
+  from {
+    opacity: 0;
+    transform: translateY(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 470px);
+    grid-template-rows: auto 1fr;
+    column-gap: 48px;
+    padding-top: 150px;
+    padding-bottom: 72px;
+  }
+
+  .copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .name {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  .stackWrap {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin-top: 0;
+  }
+
+  .pane {
+    --step: 26px;
+    translate: calc(var(--i) * var(--step)) 0;
+    width: calc(100% - 4 * var(--step));
+    padding: 20px 24px;
+  }
+
+  .paneTitle {
+    font-size: 22px;
+  }
+
+  .paneItems {
+    font-size: 15px;
+  }
+
+  .discCobalt {
+    width: min(54vw, 780px);
+    right: max(-8vw, -120px);
+    top: 60px;
+  }
+
+  .discSignal {
+    width: 220px;
+    left: auto;
+    right: 0;
+    bottom: 40px;
+  }
+}

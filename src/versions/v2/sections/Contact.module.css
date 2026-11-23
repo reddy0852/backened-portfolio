@@ -1,0 +1,116 @@
+.section {
+  display: grid;
+  gap: 48px;
+  overflow: hidden;
+}
+
+.disc {
+  width: 130vw;
+  aspect-ratio: 1;
+  left: 10vw;
+  bottom: -20vw;
+}
+
+.intro {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+
+.channels {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0 0;
+}
+
+.channel {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 16px;
+}
+
+.channel dt {
+  color: var(--slate);
+  font-size: 15px;
+}
+
+.channel dd {
+  margin: 0;
+  font-size: clamp(17px, 1.6vw, 21px);
+  overflow-wrap: anywhere;
+}
+
+.form {
+  composes: glass from '../base.module.css';
+  position: relative;
+  display: grid;
+  gap: 18px;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.formTitle {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-control);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 16px;
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: var(--slate);
+  opacity: 0.8;
+}
+
+.input[aria-invalid='true'] {
+  border-color: #c2340f;
+}
+
+.error {
+  margin: 0;
+  color: #b02e0c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.note {
+  margin: 0;
+  color: var(--slate);
+  font-size: 14px;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
+    align-items: start;
+    gap: 64px;
+  }
+
+  .disc {
+    width: min(57vw, 820px);
+    left: auto;
+    right: -12vw;
+    top: 60px;
+    bottom: auto;
+  }
+}

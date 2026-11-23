@@ -1,0 +1,203 @@
+/* Self-contained styling: must read well on top of every site version (light or dark). */
+.root {
+  --sw-surface: rgba(12, 16, 38, 0.78);
+  --sw-edge: rgba(255, 255, 255, 0.16);
+  --sw-text: #f5f7ff;
+  --sw-muted: rgba(245, 247, 255, 0.68);
+  --sw-accent: linear-gradient(135deg, #2638ff, #7a3cff);
+  --sw-blur: blur(18px) saturate(1.4);
+
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  font-family: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  visibility: hidden;
+  pointer-events: none;
+  /* Stay visible until the closing transition finishes. */
+  transition: visibility 0s linear 0.25s;
+}
+
+.root[data-open='true'] .panel {
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prompt,
+.option {
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  transform-origin: bottom right;
+  transition:
+    opacity 0.18s ease,
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.root[data-open='true'] .prompt,
+.root[data-open='true'] .option {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--delay, 0ms);
+}
+
+.prompt {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--sw-surface);
+  border: 1px solid var(--sw-edge);
+  color: var(--sw-text);
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: var(--sw-blur);
+  -webkit-backdrop-filter: var(--sw-blur);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(280px, calc(100vw - 40px));
+  padding: 10px 14px 10px 10px;
+  border-radius: 16px;
+  background: var(--sw-surface);
+  border: 1px solid var(--sw-edge);
+  color: var(--sw-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: var(--sw-blur);
+  -webkit-backdrop-filter: var(--sw-blur);
+}
+
+.option:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+.option[aria-pressed='true'] {
+  border-color: rgba(143, 120, 255, 0.85);
+}
+
+.optionId {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.option[aria-pressed='true'] .optionId {
+  background: var(--sw-accent);
+}
+
+.optionText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.optionLabel {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.optionDescription {
+  color: var(--sw-muted);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.check {
+  flex: none;
+  opacity: 0;
+}
+
+.option[aria-pressed='true'] .check {
+  opacity: 1;
+}
+
+.fab {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--sw-edge);
+  background: var(--sw-surface);
+  color: var(--sw-text);
+  cursor: pointer;
+  box-shadow: 0 14px 34px -10px rgba(10, 16, 53, 0.55);
+  backdrop-filter: var(--sw-blur);
+  -webkit-backdrop-filter: var(--sw-blur);
+  transition: transform 0.2s ease;
+}
+
+.fab:hover {
+  transform: translateY(-2px);
+}
+
+.fabIcon {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.root[data-open='true'] .fabIcon {
+  transform: rotate(90deg);
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  left: -8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: var(--sw-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.option:focus-visible,
+.fab:focus-visible {
+  outline: 3px solid #8fa2ff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt,
+  .option,
+  .fab,
+  .fabIcon {
+    transition: none;
+  }
+}

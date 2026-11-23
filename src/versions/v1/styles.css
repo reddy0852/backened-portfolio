@@ -1,3 +1,12 @@
+/*
+ * v1 — the original terminal design.
+ * Tailwind (theme in tailwind.config.js) plus the original css/main.css, carried over verbatim.
+ * Utilities come last, as on the original page where the Tailwind CDN injected them after main.css.
+ * Loaded only when v1 is active; switching versions reloads the page, so nothing here leaks into other versions.
+ */
+@tailwind base;
+@tailwind components;
+
 /* ============================================================
    MAIN.CSS — Unified Stylesheet for Backend Portfolio
    Single source of truth for all custom styles
@@ -104,6 +113,18 @@ body {
     }
 }
 
+/* --- Certification log line entrance --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
 /* --- Dot Pattern (used in timeline header) --- */
 .dot-pattern {
     background-image: radial-gradient(#888 1px, transparent 1px);
@@ -147,11 +168,15 @@ body {
 /* --- Mobile Menu --- */
 .mobile-menu {
     transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
+    /* visibility keeps the closed menu out of the tab order; it flips after the slide-out. */
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, visibility 0s linear 0.3s;
 }
 
 .mobile-menu.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* --- Navbar scroll shadow --- */
@@ -513,3 +538,5 @@ section[id] {
         color: #666;
     }
 }
+
+@tailwind utilities;

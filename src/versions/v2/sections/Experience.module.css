@@ -1,0 +1,201 @@
+.header {
+  display: grid;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+
+.note {
+  margin: 0;
+  max-width: 24rem;
+}
+
+/* ---------- Timeline (desktop only; the list carries the same content on mobile) ---------- */
+.timeline {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+    align-items: start;
+    gap: 48px;
+    margin-bottom: 72px;
+  }
+
+  .timeline {
+    position: relative;
+    display: block;
+    height: 160px;
+    margin-bottom: 64px;
+  }
+
+  .bar {
+    position: absolute;
+    top: calc(var(--lane) * 48px);
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: var(--r-control);
+    overflow: hidden;
+    background: var(--ink);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .bar span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bar[data-kind='current'] {
+    background: var(--cobalt);
+  }
+
+  .bar[data-narrow='true'] {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .bar[data-narrow='true'] span {
+    position: absolute;
+    right: calc(100% + 8px);
+    color: var(--cobalt);
+  }
+
+  .bar[data-kind='education'] {
+    background: transparent;
+    border: 1px dashed var(--ink);
+    color: var(--ink);
+  }
+
+  .axis {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 112px;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .tick {
+    position: absolute;
+    top: 0;
+    padding: 10px 0 0 6px;
+    border-left: 1px solid var(--rule);
+    color: var(--slate);
+    font-size: 14px;
+  }
+
+  .today {
+    position: absolute;
+    top: 105px;
+    translate: -7px 0;
+    padding-top: 26px;
+    color: var(--signal);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .today::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--signal);
+  }
+}
+
+/* ---------- Role list ---------- */
+.list {
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0 0 0 20px;
+  border-left: 2px solid var(--rule);
+  list-style: none;
+}
+
+.role {
+  composes: glass from '../base.module.css';
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 22px 24px 26px;
+}
+
+.education {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 18px 24px;
+  border: 1px dashed var(--ink);
+  border-radius: var(--r-pane);
+}
+
+.when {
+  margin: 0;
+  color: var(--slate);
+  font-size: 14px;
+}
+
+.role[data-current='true'] .when {
+  color: var(--signal);
+  font-weight: 600;
+}
+
+.title {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.company {
+  margin: 0;
+  color: var(--slate);
+  font-size: 15px;
+}
+
+.role[data-current='true'] .company {
+  color: var(--cobalt);
+}
+
+.highlights {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.highlights li::marker {
+  color: var(--cobalt);
+}
+
+.tech {
+  margin: 6px 0 0;
+  color: var(--slate);
+  font-size: 14px;
+}
+
+@media (min-width: 900px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    align-items: start;
+    gap: 20px;
+    padding: 0;
+    border: 0;
+  }
+
+  .role {
+    padding: 28px 32px 32px;
+  }
+}

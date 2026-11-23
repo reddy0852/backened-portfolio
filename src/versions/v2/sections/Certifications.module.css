@@ -1,0 +1,81 @@
+.section {
+  display: grid;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.disc {
+  width: min(92vw, 520px);
+  aspect-ratio: 1;
+  right: -24vw;
+  top: 48px;
+}
+
+.title {
+  position: relative;
+  max-width: 6.5em;
+}
+
+.list {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  composes: glass from '../base.module.css';
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 24px 24px 28px;
+}
+
+.issuer {
+  margin: 0;
+  color: var(--slate);
+  font-size: 14px;
+}
+
+.name {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.description {
+  margin: 0 0 4px;
+  color: var(--slate);
+  font-size: 16px;
+}
+
+@media (min-width: 900px) {
+  .section {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+    align-items: start;
+    gap: 48px;
+  }
+
+  .disc {
+    right: auto;
+    left: calc(var(--gutter) + 60px);
+    top: 80px;
+  }
+
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  /* Offset every other card so the pair reads as layered glass rather than a grid. */
+  .card:nth-child(even) {
+    translate: 0 60px;
+  }
+
+  .section {
+    padding-bottom: calc(clamp(80px, 10vw, 140px) + 60px);
+  }
+}

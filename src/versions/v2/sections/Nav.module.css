@@ -1,0 +1,124 @@
+.wrap {
+  position: fixed;
+  inset: 16px var(--gutter) auto;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.bar {
+  composes: glass from '../base.module.css';
+  width: min(100%, var(--content));
+  padding: 6px 6px 6px 20px;
+  border-radius: 28px;
+  box-shadow: 0 12px 32px -12px rgba(26, 33, 115, 0.22);
+  pointer-events: auto;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+}
+
+.brand {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.menuButton {
+  padding: 9px 18px;
+}
+
+/* Mobile: the menu lives inside the expanded bar. */
+.menu {
+  display: none;
+  padding: 8px 14px 14px 0;
+}
+
+.bar[data-open='true'] {
+  border-radius: var(--r-pane);
+}
+
+.bar[data-open='true'] .menu {
+  display: block;
+}
+
+.links {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.links li + li {
+  border-top: 1px solid var(--rule);
+}
+
+.link {
+  display: block;
+  padding: 10px 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.05;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: var(--cobalt);
+}
+
+.cta {
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 24px;
+    border-radius: 999px;
+  }
+
+  /* Doubled selector: must beat the composed .button display rule regardless of stylesheet order. */
+  .bar .menuButton {
+    display: none;
+  }
+
+  .menu,
+  .bar[data-open='true'] .menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0;
+  }
+
+  .links {
+    display: flex;
+    gap: 28px;
+    margin: 0;
+  }
+
+  .links li + li {
+    border: 0;
+  }
+
+  .link {
+    padding: 0;
+    color: var(--slate);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .cta {
+    width: auto;
+  }
+}
