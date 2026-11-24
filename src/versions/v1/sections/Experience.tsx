@@ -1,6 +1,6 @@
 import type { Education, Role, YearMonth } from '@/content/types';
 import { formatYearMonth } from '@/lib/dates';
-import { rolesNewestFirst } from '@/lib/profile';
+import { roleVersions, rolesNewestFirst } from '@/lib/profile';
 import { Symbol } from '../Symbol';
 import { CURRENT_ROLE, PAST_ROLE } from '../theme';
 
@@ -12,9 +12,14 @@ interface ExperienceProps {
   readonly education: readonly Education[];
 }
 
-/** "Deployment History": roles as versioned releases, alternating sides of a gradient timeline. */
+/**
+ * "Deployment History": roles as versioned releases, alternating sides of a gradient timeline.
+ * Version numbers follow semver by career meaning: major = new company, minor = promotion
+ * within the same company (see `roleVersions`) — not just a countdown from the role count.
+ */
 export function Experience({ roles, education }: ExperienceProps) {
   const ordered = rolesNewestFirst(roles);
+  const versions = roleVersions(roles);
 
   return (
     <section id="experience" aria-label="Professional Experience" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden section-reveal">
@@ -42,7 +47,7 @@ export function Experience({ roles, education }: ExperienceProps) {
             <RoleEntry
               key={role.id}
               role={role}
-              version={`v${ordered.length - i}.0.0`}
+              version={versions.get(role.id) ?? 'v1.0.0'}
               metaOnLeft={i % 2 === 0}
               isFirstRole={i === ordered.length - 1}
             />

@@ -28,6 +28,36 @@ export const uniqueSkillCount = (layers: readonly { items: readonly string[] }[]
 
 export const uniqueCompanies = (roles: readonly Role[]): string[] => [...new Set(rolesNewestFirst(roles).map((r) => r.company))];
 
+/**
+ * Git-style release version per role, for the "Deployment History" timeline.
+ * A major version marks a new company (a fresh release line); a minor version
+ * marks a promotion within the same company (a feature release on that line).
+ * Patch stays 0 — nothing in the data models a same-title revision.
+ *
+ * Example: Trainee → Associate → Engineer (all one company) → v1.0.0, v1.1.0, v1.2.0,
+ * then a move to a new company → v2.0.0.
+ */
+export function roleVersions(roles: readonly Role[]): ReadonlyMap<string, string> {
+  const oldestFirst = [...rolesNewestFirst(roles)].reverse();
+  const versions = new Map<string, string>();
+  let major = 0;
+  let minor = 0;
+  let company: string | null = null;
+
+  for (const role of oldestFirst) {
+    if (role.company === company) {
+      minor += 1;
+    } else {
+      major += 1;
+      minor = 0;
+      company = role.company;
+    }
+    versions.set(role.id, `v${major}.${minor}.0`);
+  }
+
+  return versions;
+}
+
 export interface ContactLink {
   readonly id: 'email' | 'linkedin' | 'github';
   readonly label: string;
