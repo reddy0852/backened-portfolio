@@ -4,7 +4,7 @@
 
 🔗 **Live:** [https://reddy0852.github.io/backened-portfolio](https://reddy0852.github.io/backened-portfolio)
 
-The site ships several design versions side by side. A floating button in the
+The site ships several design versions side by side (`v1` is the default). A floating button in the
 bottom-right corner lets visitors pick one; the choice is kept in the URL (`?v=v1`)
 and remembered for next time.
 

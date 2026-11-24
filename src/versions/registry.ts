@@ -31,4 +31,4 @@ export const VERSIONS = [
   },
 ] as const satisfies readonly SiteVersion[];
 
-export const DEFAULT_VERSION_ID: (typeof VERSIONS)[number]['id'] = 'v2';
+export const DEFAULT_VERSION_ID: (typeof VERSIONS)[number]['id'] = 'v1';
